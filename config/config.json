@@ -1,0 +1,12 @@
+{
+    "development": {
+        "endpoint": "http://localhost:5000",
+        "websocket": "ws://localhost:5000",
+        "peerjsEndpoint": "0.peerjs.com"
+    },
+    "test": {
+
+    },
+    "production": {
+    }
+}
