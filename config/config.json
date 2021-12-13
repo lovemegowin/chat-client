@@ -8,5 +8,6 @@
 
     },
     "production": {
+        "peerjsEndpoint": "0.peerjs.com"
     }
 }

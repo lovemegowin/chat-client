@@ -265,7 +265,8 @@ const initializeSocketConnection = () => {
         secure: true,
         reconnection: true,
         rejectUnauthorized: false,
-        reconnectionAttempts: 10
+        reconnectionAttempts: 10,
+        path: '/api/socket.io'
     });
 }
 
