@@ -261,21 +261,16 @@ const initializePeerConnection = () => {
         config: {
             iceServers: [
                 {
-                    "urls": "stun:49.235.203.220:3478"
+                    "urls": "stun.l.google.com:19302"
                 },
                 {
-                    "urls": "stun:tx2stun.tuyacn.com:3478"
+                    "urls": "stun1.l.google.com:19302"
                 },
                 {
-                    "urls": "turn:49.235.203.220:3478",
-                    "credential": "COihs8XzvXpfajPuNlc7JouD18Q=",
-                    "username": "1639485014:6cf4d134da9bdff3f1rahk"
+                    "urls": "turn:47.97.33.249:3478",
+                    "credential": "lovemegowin",
+                    "username": "yexm"
                 },
-                {
-                    "urls": "turn:tx2turn.tuyacn.com:3478",
-                    "credential": "COihs8XzvXpfajPuNlc7JouD18Q=",
-                    "username": "1639485014:6cf4d134da9bdff3f1rahk"
-                }
             ]
         }
     });
