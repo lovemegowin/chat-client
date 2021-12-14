@@ -257,7 +257,27 @@ const initializePeerConnection = () => {
         host: peerjsEndpoint,
         secure: true,
         debug: 3,
-        path: '/peer/server'
+        path: '/peer/server',
+        config: {
+            iceServers: [
+                {
+                    "urls": "stun:49.235.203.220:3478"
+                },
+                {
+                    "urls": "stun:tx2stun.tuyacn.com:3478"
+                },
+                {
+                    "urls": "turn:49.235.203.220:3478",
+                    "credential": "COihs8XzvXpfajPuNlc7JouD18Q=",
+                    "username": "1639485014:6cf4d134da9bdff3f1rahk"
+                },
+                {
+                    "urls": "turn:tx2turn.tuyacn.com:3478",
+                    "credential": "COihs8XzvXpfajPuNlc7JouD18Q=",
+                    "username": "1639485014:6cf4d134da9bdff3f1rahk"
+                }
+            ]
+        }
     });
 }
 
