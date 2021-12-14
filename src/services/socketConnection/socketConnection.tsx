@@ -256,7 +256,8 @@ const initializePeerConnection = () => {
     return new Peer('', {
         host: peerjsEndpoint,
         secure: true,
-        debug: 3
+        debug: 3,
+        path: '/peer/server'
     });
 }
 
