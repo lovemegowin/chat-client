@@ -261,6 +261,12 @@ const initializePeerConnection = () => {
         config: {
             iceServers: [
                 {
+                    "urls": "stun:stun.l.google.com:19302"
+                },
+                {
+                    "urls": "stun:stun1.l.google.com:19302"
+                },
+                {
                     "urls": "turn:47.97.33.249:3478",
                     "credential": "lovemegowin",
                     "username": "yexm"
