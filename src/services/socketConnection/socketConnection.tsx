@@ -24,8 +24,8 @@ class SocketConnection {
         this.socket = initializeSocketConnection();
         if (this.socket) this.isSocketConnected = true;
         if (this.myPeer) this.isPeersConnected = true;
-        this.initializeSocketEvents();
         this.initializePeersEvents();
+        this.initializeSocketEvents();
     }
 
     initializeSocketEvents = () => {
@@ -81,7 +81,7 @@ class SocketConnection {
             this.streaming = true;
             this.settings.updateInstance('streaming', true);
             this.createVideo({ id: this.myID, stream });
-            await this.setPeersListeners(stream);
+            this.setPeersListeners(stream);
             this.newUserConnection(stream);
         }
     }
@@ -102,7 +102,7 @@ class SocketConnection {
         });
     }
 
-    setPeersListeners =  (stream:MediaStream) => new Promise((resolve) => {
+    setPeersListeners =  (stream:MediaStream) => {
         this.myPeer.on('call', (call:any) => {
             call.answer(stream);
             call.on('stream', (userVideoStream:MediaStream) => {
@@ -117,9 +117,8 @@ class SocketConnection {
                 this.removeVideo(call.metadata.id);
             });
             peers[call.metadata.id] = call;
-            resolve()
         });
-    })
+    }
 
     newUserConnection = (stream:MediaStream) => {
         this.socket.on('new-user-connect', (userData:any) => {
