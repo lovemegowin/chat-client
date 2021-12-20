@@ -86,12 +86,12 @@ class SocketConnection {
         }
     }
 
-    getVideoAudioStream = (video:boolean=true, audio:boolean=true) => {
+    getVideoAudioStream = async (video:boolean=true, audio:boolean=true) => {
         let quality = this.settings.params?.quality;
         if (quality) quality = parseInt(quality);
         // @ts-ignore
         const myNavigator = navigator.mediaDevices.getUserMedia || navigator.mediaDevices.webkitGetUserMedia || navigator.mediaDevices.mozGetUserMedia || navigator.mediaDevices.msGetUserMedia;
-        return myNavigator({
+        return await myNavigator({
             video: video ? {
                 frameRate: quality ? quality : 12,
                 noiseSuppression: true,
@@ -106,6 +106,7 @@ class SocketConnection {
         this.myPeer.on('call', (call:any) => {
             call.answer(stream);
             call.on('stream', (userVideoStream:MediaStream) => {
+                console.log('setPeersListeners stream')
                 this.createVideo({ id: call.metadata.id, stream: userVideoStream });
             });
             call.on('close', () => {
@@ -131,6 +132,7 @@ class SocketConnection {
         const { userID } = userData;
         const call = this.myPeer.call(userID, stream, { metadata: { id: this.myID } });
         call.on('stream', (userVideoStream:MediaStream) => {
+            console.log('connectToNewUser stream')
             this.createVideo({ id: userID, stream: userVideoStream, userData });
         });
         call.on('close', () => {
