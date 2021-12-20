@@ -58,7 +58,7 @@ class SocketConnection {
     }
 
     initializePeersEvents = () => {
-        this.myPeer.on('open', (id) => {
+        this.myPeer.on('open', async (id) => {
             const { userDetails } = this.settings;
             this.myID = id;
             const roomID = window.location.pathname.split('/')[2];
@@ -66,8 +66,8 @@ class SocketConnection {
                 userID: id, roomID, ...userDetails
             }
             console.log('peers established and joined room', userData);
+            await this.setNavigatorToStream();
             this.socket.emit('join-room', userData);
-            this.setNavigatorToStream();
         });
         this.myPeer.on('error', (err:Error) => {
             console.log('peer connection error', err);
@@ -75,16 +75,15 @@ class SocketConnection {
         })
     }
 
-    setNavigatorToStream = () => {
-        this.getVideoAudioStream().then((stream:MediaStream) => {
-            if (stream) {
-                this.streaming = true;
-                this.settings.updateInstance('streaming', true);
-                this.createVideo({ id: this.myID, stream });
-                this.setPeersListeners(stream);
-                this.newUserConnection(stream);
-            }
-        })
+    setNavigatorToStream = async () => {
+        const stream: MediaStream = await this.getVideoAudioStream()
+        if (stream) {
+            this.streaming = true;
+            this.settings.updateInstance('streaming', true);
+            this.createVideo({ id: this.myID, stream });
+            this.setPeersListeners(stream);
+            this.newUserConnection(stream);
+        }
     }
 
     getVideoAudioStream = (video:boolean=true, audio:boolean=true) => {
