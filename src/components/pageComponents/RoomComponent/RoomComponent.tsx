@@ -113,7 +113,7 @@ const RoomComponent = (props: any) => {
             }
             <div id="room-container"></div>
             <FootBar className="chat-footbar">
-            <div className="footbar-title">Tuya CHAT</div>
+            <div className="footbar-title">WebRTC CHAT</div>
                 <div className="footbar-wrapper">
                     {streaming && <div className="status-action-btn mic-btn" onClick={handleMyMic} title={micStatus ? 'Disable Mic' : 'Enable Mic'}>
                         {micStatus ?

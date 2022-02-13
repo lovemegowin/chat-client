@@ -10,7 +10,7 @@ function NavBar(props:any) {
                     <AppBar className="app-navbar" position="static">
                         <Toolbar>
                             <Typography variant="h6" className="navbar-title">
-                                Tuya CHAT
+                                WebRTC CHAT
                             </Typography>
                         </Toolbar>
                     </AppBar>
